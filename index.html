@@ -311,11 +311,11 @@ print("- Enjoys sharing knowledge and building in public")</code></pre>
                             </div>
                             <div class="cell-content">
                                 <div class="code-editor">
-                                    <pre><code class="language-python"># Skills & Technologies Analysis
+                                    <pre><code class="language-python"># Skills & Technologies Word Cloud
+from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-import seaborn as sns
 
-# Define skills dictionary with proficiency levels
+# Define skills dictionary
 skills = {
     'Languages': ['Python', 'C', 'C++', 'JavaScript', 'HTML', 'CSS', 'CUDA', 'R'],
     'ML/AI': ['TensorFlow', 'PyTorch', 'LangChain', 'LangGraph', 'spaCy', 'NumPy', 'Pandas', 'Seaborn', 'Spark (basic)'],
@@ -324,14 +324,16 @@ skills = {
     'Tools': ['Git', 'learning Docker']
 }
 
-# Create a sample skills barplot
-categories = list(skills.keys())
-counts = [len(skills[cat]) for cat in categories]
-plt.figure(figsize=(8,4))
-sns.barplot(x=categories, y=counts, palette='viridis')
-plt.title('Skill Categories (Count)')
-plt.ylabel('Number of Skills')
-plt.tight_layout()
+# Combine all skills into a single string
+all_skills = ' '.join([skill for skills_list in skills.values() for skill in skills_list])
+
+# Generate word cloud
+wordcloud = WordCloud(width=800, height=400, background_color='white', colormap='viridis').generate(all_skills)
+
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+plt.title('Skills & Technologies Word Cloud')
 plt.show()
 
 # Print skills summary
@@ -342,16 +344,17 @@ for category, skill_list in skills.items():
                             </div>
                             <div class="cell-output">
                                 <div class="output-header">
-                                    <i class="fas fa-chart-pie"></i> Skills Visualization
+                                    <i class="fas fa-cloud"></i> Skills Word Cloud
                                 </div>
                                 <div class="output-content">
-                                    <img src="https://dummyimage.com/600x200/222/fff&text=Sample+Skills+Barplot" alt="Skills Barplot" class="img-fluid mb-2"/>
+                                    <img src="./Files/Images/wordcloud.png" alt="Skills Word Cloud" class="img-fluid mb-2"/>
                                     <div class="output-line mt-3">Skills loaded successfully! 🚀</div>
                                     <div class="output-line">Languages: Python, C, C++, JavaScript, HTML, CSS, CUDA, R</div>
                                     <div class="output-line">ML/AI: TensorFlow, PyTorch, LangChain, LangGraph, spaCy, NumPy, Pandas, Seaborn, Spark (basic)</div>
                                     <div class="output-line">Web: Flask, FastAPI, Bootstrap, Tailwind (bits), planning Django</div>
                                     <div class="output-line">Database: MySQL, PostgreSQL (Neon), SQLite3, learning ChromaDB</div>
                                     <div class="output-line">Tools: Git, learning Docker</div>
+                                    <div class="output-line text-muted">(Word cloud generated from all skills above.)</div>
                                 </div>
                             </div>
                         </div>
