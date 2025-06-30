@@ -574,11 +574,13 @@ print(result)
 
 // Utility functions
 function downloadResume() {
-    // Simulate resume download
+    // Correctly download the resume PDF
     const link = document.createElement('a');
-    link.href = '#';
-    link.download = './Files/Docs/Resume Firoj.pdf';
+    link.href = 'Files/Docs/Resume Firoj.pdf'; // Correct relative path
+    link.download = 'Resume Firoj.pdf'; // Just the filename
+    document.body.appendChild(link); // Required for Firefox
     link.click();
+    document.body.removeChild(link);
     
     // Show notification
     setTimeout(() => {
@@ -587,7 +589,7 @@ function downloadResume() {
 }
 
 function openGitHub() {
-    window.open('https://github.com/samas', '_blank');
+    window.open('https://github.com/Firojpaudel', '_blank');
 }
 
 function sendMessage() {
