@@ -577,7 +577,7 @@ function downloadResume() {
     // Simulate resume download
     const link = document.createElement('a');
     link.href = '#';
-    link.download = 'Samas_Resume.pdf';
+    link.download = './Files/Docs/Resume Firoj.pdf';
     link.click();
     
     // Show notification
