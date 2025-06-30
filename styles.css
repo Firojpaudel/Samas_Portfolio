@@ -652,6 +652,29 @@ code[class*="language-python"] {
     width: 20px;
 }
 
+.contact-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 0;
+}
+
+.contact-icon {
+    width: 2em;
+    height: 2em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* Contact Form Styles */
 .contact-form {
     background-color: var(--bg-light);
     padding: 1.5rem;
@@ -769,108 +792,231 @@ code[class*="language-python"] {
 
 @media (max-width: 1080px) {
     .sidebar {
-        position: static; /* Stack in document flow */
-        height: auto; /* Adjust to content */
-        width: 100%; /* Full width */
+        position: static;
+        width: 100%;
+        height: auto;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
-        padding: 1rem;
-        z-index: 1; /* Prevent overlap */
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+        flex-direction: row;
+        align-items: flex-start;
+        overflow-x: auto;
+        z-index: 1;
     }
-    
-    .main-content-wrapper {
-        margin-left: 0; /* Remove sidebar offset */
+    .sidebar-content {
         width: 100%;
-        padding: 1rem;
-        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 2rem;
     }
-    
-    .notebook-container {
-        max-width: 100%; /* Full width */
-        margin: 0 auto; /* Center */
-        padding: 0 1rem; /* Adequate padding */
+    .sidebar .nav {
+        flex-direction: row;
+        gap: 1rem;
     }
-    
+    .sidebar .nav-link {
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+    .main-content-wrapper,
     .notebook-area {
+        margin-left: 0;
+        max-width: 100%;
+        width: 100%;
+        padding: 1rem 0.5rem;
+    }
+    .notebook-container {
         max-width: 100%;
         margin: 0 auto;
-        padding: 1rem;
+        padding: 0 0.5rem;
     }
 }
 
-
-@media (max-width: 768px) {
+/* Responsive: Stack sidebar on top for narrow, short, or vertical screens */
+@media (max-width: 1300px), (max-height: 700px), (orientation: portrait) {
     .sidebar {
-        position: static; /* Stack in document flow */
-        height: auto; /* Adjust to content */
-        width: 100%; /* Full width */
+        position: static;
+        width: 100%;
+        height: auto;
         border-right: none;
         border-bottom: 1px solid var(--border-color);
-        padding: 1rem;
-        z-index: 1; /* Lower z-index to avoid overlap */
-    }
-    
-    .main-content-wrapper {
-        margin-left: 0; /* No sidebar offset */
-        width: 100%;
-        padding: 1rem;
+        padding: 0.5rem 0 0.5rem 0;
+        min-height: unset;
         box-sizing: border-box;
-    }
-    
-    .notebook-container {
-        max-width: 100%; /* Full width */
-        margin: 0 auto; /* Center */
-        padding: 0 1rem; /* Increased padding for better spacing */
-    }
-    
-    .notebook-area {
-        max-width: 100%;
-        margin: 0 auto;
-        padding: 1rem;
-    }
-    
-    .cell-header {
-        flex-wrap: wrap;
-        gap: 0.5rem;
-    }
-    
-    .projects-grid,
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .experience-header {
-        flex-direction: column;
+        display: flex;
+        justify-content: flex-start;
         align-items: flex-start;
     }
-    
-    .header-actions {
-        margin-top: 1rem;
+    .sidebar-content {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 2.5rem;
+        min-height: unset;
+        max-width: 900px;
+        margin: 0 auto;
     }
-    
-    .profile-photo,
-    .profile-photo-placeholder {
-        width: 120px;
-        height: 120px;
+    .sidebar .nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+        margin: 0;
+        padding: 0;
+        min-width: 160px;
+        width: auto;
+        justify-content: flex-start;
+    }
+    .sidebar .nav-link {
+        padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+        margin-bottom: 0;
+        white-space: nowrap;
+        align-items: center;
+        display: flex;
+        height: 40px;
+        font-size: 1rem;
+        min-width: 120px;
+        justify-content: flex-start;
+        border-radius: 8px;
+        text-align: left;
+        gap: 0.75rem;
+    }
+    .sidebar .nav-link i {
+        margin-right: 0.75rem;
+        min-width: 20px;
+        text-align: left;
+    }
+    .sidebar-separator {
+        width: 3px;
+        background: linear-gradient(to bottom, var(--border-color), var(--text-secondary));
+        min-height: 120px;
+        height: 100%;
+        margin: 0 2rem;
+        align-self: stretch;
+        border-radius: 2px;
+        opacity: 1;
+        display: block;
+        box-shadow: 0 0 8px 0 rgba(0,0,0,0.08);
+    }
+    .quick-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex: 0 0 auto;
+        margin-top: 0;
+        padding-left: 0;
+        min-width: 160px;
+        width: auto;
+    }
+    .quick-actions .btn {
+        min-width: 140px;
+        height: 40px;
+        font-size: 1rem;
+        border-radius: 8px;
+        padding: 0 1.5rem;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        box-sizing: border-box;
+        transition: background 0.2s, border-color 0.2s;
+        text-align: left;
+        gap: 0.75rem;
+    }
+    .quick-actions .btn.download-resume {
+        min-width: 180px;
+        font-weight: 600;
     }
 }
 
-@media (max-width: 480px) {
-    .sidebar {
-        padding: 0.75rem; /* Slightly more padding than 0.5rem for balance */
+@media (max-width: 1080px) {
+    .sidebar-content {
+        gap: 1.5rem;
+        max-width: 700px;
     }
-    
-    .notebook-container {
-        padding: 0 0.5rem; /* Slightly more padding */
+    .sidebar .nav-link, .quick-actions .btn {
+        min-width: 100px;
+        height: 36px;
+        font-size: 0.95rem;
+        border-radius: 7px;
+        padding: 0 1.2rem;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 0.6rem;
     }
-    
-    .notebook-area {
-        padding: 0.5rem;
+    .sidebar .nav-link i {
+        margin-right: 0.6rem;
     }
-    
-    .notebook-cell {
-        margin-bottom: 0.75rem; /* Slightly tighter spacing */
+    .quick-actions .btn.download-resume {
+        min-width: 130px;
     }
+}
+
+@media (max-width: 900px), (max-height: 600px) {
+    .sidebar-content {
+        gap: 1rem;
+        max-width: 95vw;
+    }
+    .sidebar .nav-link, .quick-actions .btn {
+        min-width: 80px;
+        height: 32px;
+        font-size: 0.92rem;
+        border-radius: 6px;
+        padding: 0 0.8rem;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 0.5rem;
+    }
+    .sidebar .nav-link i {
+        margin-right: 0.5rem;
+    }
+    .quick-actions .btn.download-resume {
+        min-width: 100px;
+    }
+    .sidebar-separator {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 600px), (max-height: 500px) {
+    .sidebar-content {
+        gap: 0.5rem;
+    }
+    .sidebar .nav-link, .quick-actions .btn {
+        min-width: 60px;
+        height: 28px;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        padding: 0 0.5rem;
+        justify-content: flex-start;
+        text-align: left;
+        gap: 0.4rem;
+    }
+    .sidebar .nav-link i {
+        margin-right: 0.4rem;
+    }
+    .quick-actions .btn.download-resume {
+        min-width: 80px;
+    }
+    .sidebar-separator {
+        margin: 0 0.5rem;
+    }
+}
+
+/* For large (vertical) sidebar, keep horizontal separator */
+.sidebar.vertical .sidebar-separator {
+    width: 100%;
+    height: 2px;
+    background: var(--border-color);
+    margin: 1.5rem 0;
+    align-self: stretch;
+    border-radius: 1px;
+    opacity: 0.7;
 }
 
 /* Animation Classes */
@@ -997,4 +1143,13 @@ code[class*="language-python"] {
     --output-bg: #f7fafc;
     --sidebar-bg: #f3f4f6;
     --header-bg: #e5e7eb;
+}
+
+/* Highlighted (active) cell styling */
+.cell-active {
+    box-shadow: 0 0 0 3px var(--colab-blue), 0 4px 12px rgba(26, 115, 232, 0.15);
+    border-color: var(--colab-blue) !important;
+    z-index: 2;
+    position: relative;
+    transition: box-shadow 0.2s, border-color 0.2s;
 }

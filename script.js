@@ -5,6 +5,7 @@ class ColabPortfolio {
         this.currentCell = 0;
         this.cells = [];
         this.isExecuting = false;
+        this.selectedCellIndex = 0; // Track selected cell for keyboard navigation
         this.init();
         this.initSidebar();
     }
@@ -17,6 +18,14 @@ class ColabPortfolio {
         this.hideAllOutputs(); // Hide all outputs by default
         this.initializeSyntaxHighlighting(); // Initialize syntax highlighting
         this.addWelcomeAnimation();
+        // Highlight the first cell on load
+        setTimeout(() => {
+            if (this.cells.length > 0) {
+                this.cells.forEach(cell => cell.classList.remove('cell-active'));
+                this.cells[0].classList.add('cell-active');
+                this.selectedCellIndex = 0;
+            }
+        }, 0);
     }
 
     initSidebar() {
@@ -95,6 +104,7 @@ class ColabPortfolio {
             if (runBtn) {
                 runBtn.addEventListener('click', () => {
                     this.executeCell(cell, index);
+                    this.setSelectedCell(index);
                 });
             }
 
@@ -111,7 +121,20 @@ class ColabPortfolio {
             if (cellNumber) {
                 cellNumber.textContent = `[${index}]`;
             }
+
+            // Add click to select cell
+            cell.addEventListener('click', (e) => {
+                this.setSelectedCell(index);
+            });
         });
+    }
+
+    setSelectedCell(index) {
+        this.selectedCellIndex = index;
+        this.cells.forEach(cell => cell.classList.remove('cell-active'));
+        if (this.cells[index]) {
+            this.cells[index].classList.add('cell-active');
+        }
     }
 
     initializeSyntaxHighlighting() {
@@ -220,10 +243,13 @@ class ColabPortfolio {
         }
     }
 
-    executeCell(cell, index) {
-        if (this.isExecuting) return;
+    executeCell(cell, index, force = false) {
+        if (this.isExecuting && !force) return;
 
-        this.isExecuting = true;
+        // Only set isExecuting for manual execution, not for Run All
+        if (!force) {
+            this.isExecuting = true;
+        }
         this.currentCell = index;
 
         // Add executing animation
@@ -243,21 +269,15 @@ class ColabPortfolio {
             const output = cell.querySelector('.cell-output');
             if (output) {
                 output.classList.add('show');
+                // Scroll output into view so user sees the result immediately
+                output.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
             
             // Add success indicator
             this.showExecutionSuccess(cell);
             
-            this.isExecuting = false;
-            
-            // Auto-scroll to next cell
-            if (index < this.cells.length - 1) {
-                setTimeout(() => {
-                    this.cells[index + 1].scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }, 500);
+            if (!force) {
+                this.isExecuting = false;
             }
         }, 1500 + Math.random() * 1000);
     }
@@ -281,7 +301,7 @@ class ColabPortfolio {
 
         const runNextCell = () => {
             if (currentIndex < this.cells.length) {
-                this.executeCell(this.cells[currentIndex], currentIndex);
+                this.executeCell(this.cells[currentIndex], currentIndex, true);
                 currentIndex++;
                 setTimeout(runNextCell, 2000);
             } else {
@@ -466,6 +486,21 @@ print(result)
             if (activeCell) {
                 const index = Array.from(this.cells).indexOf(activeCell);
                 this.executeCell(activeCell, index);
+                this.setSelectedCell(index);
+            }
+        }
+        
+        // Shift + Enter: Run current cell and highlight next cell (keyboard-driven)
+        if (e.shiftKey && e.key === 'Enter') {
+            e.preventDefault();
+            const activeCell = this.getActiveCell();
+            if (activeCell) {
+                const index = Array.from(this.cells).indexOf(activeCell);
+                this.executeCell(activeCell, index);
+                // Move highlight to next cell immediately
+                let nextIndex = index + 1 < this.cells.length ? index + 1 : index;
+                this.setSelectedCell(nextIndex);
+                this.cells[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
         
@@ -482,21 +517,19 @@ print(result)
         }
     }
 
+    highlightNextCell(currentIndex) {
+        // Remove highlight from all cells
+        this.cells.forEach(cell => cell.classList.remove('cell-active'));
+        // Highlight next cell if it exists, else stay on last cell
+        let nextIndex = currentIndex + 1 < this.cells.length ? currentIndex + 1 : currentIndex;
+        this.cells[nextIndex].classList.add('cell-active');
+        this.cells[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
     getActiveCell() {
-        // Find the cell that's currently in view
-        const viewportHeight = window.innerHeight;
-        const viewportCenter = window.scrollY + viewportHeight / 2;
-        
-        for (let cell of this.cells) {
-            const rect = cell.getBoundingClientRect();
-            const cellCenter = rect.top + rect.height / 2;
-            
-            if (Math.abs(cellCenter) < rect.height / 2) {
-                return cell;
-            }
-        }
-        
-        return this.cells[0];
+        // Use selectedCellIndex for keyboard navigation
+        if (this.cells.length === 0) return null;
+        return this.cells[this.selectedCellIndex] || this.cells[0];
     }
 
     addWelcomeAnimation() {
