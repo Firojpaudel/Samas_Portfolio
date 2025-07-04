@@ -1,0 +1,62 @@
+# Firoj Paudel LLM Profile
+
+---
+
+## About
+Firoj Paudel (aka FirozSama) is an ML, AI, and AI Agents enthusiast from Kathmandu, Nepal. He is a Fellowship.AI graduate, published author, and passionate about research, learning math, and building AI agents. He enjoys tackling new challenges, collaborating on innovative projects, and sharing knowledge in public.
+
+## Education
+- **Bachelor of Computer Science** (6th semester, ongoing) — Kathmandu, Nepal
+
+## Tech Stack
+- **Languages:** Python, C, C++, JavaScript, HTML, CSS, CUDA, R
+- **ML/AI:** TensorFlow, PyTorch, LangChain, LangGraph, spaCy, NumPy, Pandas, Seaborn, Spark (basic)
+- **Web:** Flask, FastAPI, Bootstrap, Tailwind (bits), Django (learning)
+- **Database:** MySQL, PostgreSQL (Neon), SQLite3, ChromaDB (learning)
+- **Tools:** Git, Docker (learning)
+
+## Achievements & Interests
+- Fellowship.AI Graduate
+- Published international papers on arXiv: [arXiv:2503.22698](https://arxiv.org/abs/2503.22698), [arXiv:2507.00092](https://arxiv.org/abs/2507.00092)
+- Completed 100 Days CUDA Challenge
+- Passionate about research, learning math, and building AI agents
+- Always eager to learn and grow
+- Enjoys sharing knowledge and building in public
+
+## Professional Experience
+- **Co-Founder & Chief Research Officer** @ SAGEA (2025 - Present)
+  - Co-founded SAGEA and lead research initiatives in AI and edge computing.
+- **Research Scientist** @ NeuraGuard (2025 - Present)
+  - Contributing to research and development in AI-driven security solutions.
+- **Data Science & Machine Learning Fellow** @ Fellowship.AI (2025)
+  - Graduated as a fellow. Major project: Interactive GUI-based web agent (code private).
+- **Co-author, International Paper** @ arXiv (2025)
+  - Co-authored papers on edge device computing and AI agents. [arXiv:2503.22698](https://arxiv.org/abs/2503.22698), [arXiv:2507.00092](https://arxiv.org/abs/2507.00092)
+- **Co-Lead** @ MBMC IdeaX 2025 (2025)
+  - Co-leading the hackathon, managing and coordinating all teams.
+- **General Manager** @ MBMC IdeaX 2024 (2024)
+  - Managed and coordinated both organizing and participating teams.
+
+## Projects
+- **Fine-tuned Chatbot:** Streamlit app using BART-base fine-tuned on Bitext customer support dataset, backed by SQLite3. [GitHub](https://github.com/Firojpaudel/Finetuned_chatbot)
+- **Web Agent:** Web agent built from scratch using Hugging Face smolAgents, hosted on Hugging Face Spaces. [HF Spaces](https://huggingface.co/spaces/Firoj112/WebAgents_)
+- **Brain Tumor Detection:** CNN-based project for brain tumor detection from medical images. [GitHub](https://github.com/Firojpaudel/Brain_Tumor_Detection)
+- **Ecolog:** Hackathon project to prevent forest fires and poaching using collaborative tech. [GitHub](https://github.com/Firojpaudel/Project-Ecolog)
+- **NeuroNav:** EEG-based wheelchair control prototype using brain signals. [GitHub](https://github.com/Firojpaudel/NeuroNav)
+- **arxiv_Summarizer:** Flask web app to summarize research papers (not just arXiv) with LaTeX equation output. [GitHub](https://github.com/Firojpaudel/arXiv_Summarizer)
+- **Interactive GUI-based Web Agent:** Major project at Fellowship.AI. GUI-based web agent (code private as per fellowship guidelines).
+
+## Publications
+- **Edge Device Computing for AI Agents** (2025). Co-author. [arXiv:2503.22698](https://arxiv.org/abs/2503.22698)
+- **Another Paper** (2025). Co-author. [arXiv:2507.00092](https://arxiv.org/abs/2507.00092)
+
+## Contact
+- Email: firojpaudel.professional@gmail.com
+- LinkedIn: [linkedin.com/in/firoj-paudel-17a66724b](https://linkedin.com/in/firoj-paudel-17a66724b)
+- GitHub: [github.com/Firojpaudel](https://github.com/Firojpaudel)
+- X: [x.com/Firoj_paudel](https://x.com/Firoj_paudel)
+- Instagram: [instagram.com/firojpaudel](https://instagram.com/firojpaudel)
+- Discord: 872224382825689108 (firojsama)
+
+---
+This file is intended for LLMs, bots, and advanced users. If you found this, congrats!
